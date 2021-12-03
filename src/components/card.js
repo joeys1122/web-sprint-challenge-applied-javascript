@@ -1,3 +1,4 @@
+import axios from "axios";
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,6 +18,34 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+
+  const card = document.createElement('div');
+  const cardHead = document.createElement('div');
+  const cardAuthor = document.createElement('div');
+  const imgContainer = document.createElement('div');
+  const img = document.createElement('img');
+  const nameSpan = document.createElement('span');
+
+  card.classList.add('card');
+  cardHead.classList.add('headline');
+  cardAuthor.classList.add('author');
+  imgContainer.classList.add('img-container');
+
+  cardHead.textContent = article.headline;
+  img.src = article.authorPhoto;
+  nameSpan.textContent = `By ${article.authorName}`;
+
+  card.appendChild(cardHead);
+  card.appendChild(cardAuthor);
+  cardAuthor.appendChild(imgContainer);
+  cardAuthor.appendChild(nameSpan);
+  imgContainer.appendChild(img);
+
+  card.addEventListener('click', () => {
+    console.log(cardHead.textContent);
+  });
+  
+  return card;
 }
 
 const cardAppender = (selector) => {
@@ -28,6 +57,32 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  axios.get('http://localhost:5000/api/articles')
+    .then(resp => {
+      const select = document.querySelector(selector);
+
+      resp.data.articles.bootstrap.forEach(element => {
+        select.appendChild(Card(element));
+      });
+
+      resp.data.articles.javascript.forEach(element => {
+        select.appendChild(Card(element));
+      });
+
+      resp.data.articles.jquery.forEach(element => {
+        select.appendChild(Card(element));
+      });
+
+      resp.data.articles.node.forEach(element => {
+        select.appendChild(Card(element));
+      });
+
+      resp.data.articles.technology.forEach(element => {
+        select.appendChild(Card(element));
+      });
+
+    })
+    .catch(err => {console.log(err);})
 }
 
 export { Card, cardAppender }
