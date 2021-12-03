@@ -60,7 +60,21 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 Demonstrate your understanding of this week's concepts by answering the following questions:
 
 1. What is the DOM?
+
+  DOM stands for Document Object Model. The DOM is a JavaScript object that represents all of the elements on a web page. Each element (or node) in the DOM is organized into a tree-like hierarchy with an object called "document" at the top that all other element branch off from. The "document" object and its child elements have several methods and properties we can use to change the web page.
+
 2. What is an event?
+
+  Any interaction that a user does on a web page (such as clicking, moving the mouse, scrolling, etc..)
+
 3. What is an event listener?
+
+  An event listener tracks when an event is triggered on a specific element and allows you to execute a callback when that happens.
+
 4. Why would we convert a NodeList into an Array?
+
+  A NodeList does not have access to the same methods as an Array. If you would like to use a method that a NodeList does not have (such as .map() or .filter()) you would need to convert it to an Array.
+
 5. What is a component?
+
+  A component is a modular, reusable piece of code that can use HTML, CSS, and JavaScript to make elements on a web page.
